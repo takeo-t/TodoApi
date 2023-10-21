@@ -31,6 +31,19 @@ namespace TodoApi.Controllers
             return await _context.TodoItems.ToListAsync();
         }
 
+        // GET: api/TodoItems/pending
+        [HttpGet("pending")]
+        public async Task<ActionResult<IEnumerable<TodoItem>>> GetPeadingTodoItems()
+        {
+            return await _context.TodoItems.Where(t => !t.IsComplete).ToListAsync();
+        }
+
+        // GER: api/TodoItems/completed
+        public async Task<ActionResult<IEnumerable<TodoItem>>> GetCompletedTodoItems()
+        {
+            return await _context.TodoItems.Where(t => t.IsComplete).ToListAsync();
+        }
+
         // GET: api/TodoItems/5
         [HttpGet("{id}")]
         public async Task<ActionResult<TodoItem>> GetTodoItem(long id)
