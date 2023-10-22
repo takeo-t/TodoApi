@@ -92,6 +92,22 @@ namespace TodoApi.Controllers
 
             return NoContent();
         }
+        // PUT: api/TodoItems/{id}/markComplete
+        [HttpPut("{id}/markComplete")]
+        public async Task<IActionResult> MarkTodoItemAsComplete(long id)
+        {
+            var todoItem = await _context.TodoItems.FindAsync(id);
+            if(todoItem == null)
+            {
+                return NotFound();
+            }
+
+            todoItem.IsComplete = true;
+            _context.Entry(todoItem).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
 
         // POST: api/TodoItems
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
