@@ -38,7 +38,8 @@ namespace TodoApi.Controllers
             return await _context.TodoItems.Where(t => !t.IsComplete).ToListAsync();
         }
 
-        // GER: api/TodoItems/completed
+        // GET: api/TodoItems/completed
+        [HttpGet("completed")]
         public async Task<ActionResult<IEnumerable<TodoItem>>> GetCompletedTodoItems()
         {
             return await _context.TodoItems.Where(t => t.IsComplete).ToListAsync();
