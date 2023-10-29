@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "NBkivGmnEhfeOEAScBR2+66dI98c5Nmy1Zc6mJIw3hX9Yg32C5oPzVPktGnkUObRF9sWLP+NRtWeo+AHwDGYUA==",
+  "dgSpecHash": "FHnYOY1r7O3gPqMJx2qNJ8OoGnioxQr3Ds1U+Kl6B2WuAUkFB5kasKqPFSffTQVD229qrW+netddtuLbSzBJmQ==",
   "success": true,
   "projectFilePath": "/Users/t.takeo/portfolio/TodoApi/TodoApi.csproj",
   "expectedPackageFiles": [
@@ -39,7 +39,7 @@
     "/Users/t.takeo/.nuget/packages/microsoft.entityframeworkcore/7.0.13/microsoft.entityframeworkcore.7.0.13.nupkg.sha512",
     "/Users/t.takeo/.nuget/packages/microsoft.entityframeworkcore.abstractions/7.0.13/microsoft.entityframeworkcore.abstractions.7.0.13.nupkg.sha512",
     "/Users/t.takeo/.nuget/packages/microsoft.entityframeworkcore.analyzers/7.0.13/microsoft.entityframeworkcore.analyzers.7.0.13.nupkg.sha512",
-    "/Users/t.takeo/.nuget/packages/microsoft.entityframeworkcore.design/7.0.0/microsoft.entityframeworkcore.design.7.0.0.nupkg.sha512",
+    "/Users/t.takeo/.nuget/packages/microsoft.entityframeworkcore.design/7.0.13/microsoft.entityframeworkcore.design.7.0.13.nupkg.sha512",
     "/Users/t.takeo/.nuget/packages/microsoft.entityframeworkcore.inmemory/7.0.12/microsoft.entityframeworkcore.inmemory.7.0.12.nupkg.sha512",
     "/Users/t.takeo/.nuget/packages/microsoft.entityframeworkcore.relational/7.0.13/microsoft.entityframeworkcore.relational.7.0.13.nupkg.sha512",
     "/Users/t.takeo/.nuget/packages/microsoft.entityframeworkcore.sqlite/7.0.13/microsoft.entityframeworkcore.sqlite.7.0.13.nupkg.sha512",
