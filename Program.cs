@@ -26,14 +26,14 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
-
-app.MapControllers();
-
-app.Run();
-
 app.UseCors(options =>
     options.WithOrigins("http://localhost:3000")
            .AllowAnyMethod()
            .AllowAnyHeader()
 );
+
+app.UseAuthorization();
+
+app.MapControllers();
+
+app.Run();
