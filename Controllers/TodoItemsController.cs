@@ -15,35 +15,25 @@ namespace TodoApi.Controllers
     {
         private readonly TodoContext _context;
 
-        public TodoItemsController(TodoContext context)
-        {
-            _context = context;
-        }
-
         // GET: api/TodoItems
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<TodoItem>>> GetTodoItems()
+        public async Task<ActionResult<IEnumerable<TodoItem>>> GetTodoItems([FromQuery] int? status)
         {
-          if (_context.TodoItems == null)
-          {
-              return NotFound();
-          }
-            return await _context.TodoItems.ToListAsync();
-        }
+            if (_context.TodoItems == null)
+            {
+            return NotFound();
+            }
 
-        // GET: api/TodoItems/pending
-        [HttpGet("pending")]
-        public async Task<ActionResult<IEnumerable<TodoItem>>> GetPeadingTodoItems()
-        {
-            return await _context.TodoItems.Where(t => !t.IsComplete).ToListAsync();
-        }
+            IQueryable<TodoItem> query = _context.TodoItems;
 
-        // GET: api/TodoItems/completed
-        [HttpGet("completed")]
-        public async Task<ActionResult<IEnumerable<TodoItem>>> GetCompletedTodoItems()
-        {
-            return await _context.TodoItems.Where(t => t.IsComplete).ToListAsync();
-        }
+            // クエリパラメータがtrueの場合は未完了のTodoのみをフィルタリング
+            if (status.HasValue)
+            {
+                query = query.Where(t => (int)t.Status == status.Value);
+            }
+
+            return await query.ToListAsync();
+            }
 
         // GET: api/TodoItems/5
         [HttpGet("{id}")]
@@ -62,12 +52,19 @@ namespace TodoApi.Controllers
 
             return todoItem;
         }
+        private readonly ILogger<TodoItemsController> _logger;
+        public TodoItemsController(TodoContext context, ILogger<TodoItemsController> logger)
+        {
+            _context = context;
+            _logger = logger;
+        }
 
         // PUT: api/TodoItems/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=212375
         [HttpPut("{id}")]
         public async Task<IActionResult> PutTodoItem(long id, TodoItem todoItem)
         {
+
             if (id != todoItem.Id)
             {
                 return BadRequest();
@@ -79,8 +76,9 @@ namespace TodoApi.Controllers
             {
                 await _context.SaveChangesAsync();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (DbUpdateConcurrencyException ex)
             {
+                _logger.LogError(ex, "データベースの更新中に競合エラーが発生しました。");
                 if (!TodoItemExists(id))
                 {
                     return NotFound();
@@ -103,12 +101,33 @@ namespace TodoApi.Controllers
                 return NotFound();
             }
 
-            todoItem.IsComplete = true;
+            todoItem.Status = TodoStatus.Complete;
+
             _context.Entry(todoItem).State = EntityState.Modified;
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
+        // PUT: api/TodoItems/{id}/markIncomplete
+        [HttpPut("{id}/markIncomplete")]
+        public async Task<IActionResult> MarkTodoItemAsIncomplete(long id)
+        {
+            var todoItem = await _context.TodoItems.FindAsync(id);
+            if(todoItem == null)
+            {
+                return NotFound();
+            }
+
+            todoItem.Status = TodoStatus.Incomplete; // Status を 0 に設定する
+
+            _context.Entry(todoItem).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+
+            }
+
+
 
         // POST: api/TodoItems
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
