@@ -27,7 +27,8 @@ if (app.Environment.IsDevelopment()|| app.Environment.IsProduction())
 app.UseHttpsRedirection();
 
 app.UseCors(options =>
-    options.WithOrigins("http://localhost:3000")
+    // options.WithOrigins("http://localhost:3000")
+    options.WithOrigins("https://delightful-bush-08e8f4500.4.azurestaticapps.net/")
            .AllowAnyMethod()
            .AllowAnyHeader()
 );
