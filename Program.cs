@@ -7,7 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddDbContext<TodoContext>(opt =>
-    opt.UseSqlite("Data Source=todoapi.db"));
+    opt.UseSqlServer(builder.Configuration.GetConnectionString("TodoContext")));
+    // opt.UseSqlite("Data Source=todoapi.db"));
 // builder.Services.AddDbContext<TodoContext>(opt =>
 //     opt.UseInMemoryDatabase("TodoList"));
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
