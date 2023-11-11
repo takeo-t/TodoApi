@@ -7,8 +7,16 @@ var builder = WebApplication.CreateBuilder(args);
 Env.Load();
 
 builder.Services.AddControllers();
+
+
+var connectionString = Environment.GetEnvironmentVariable("TodoContext");
+if (string.IsNullOrEmpty(connectionString))
+{
+    throw new InvalidOperationException("Database connection string is not set in environment variables.");
+}
+
 builder.Services.AddDbContext<TodoContext>(opt =>
-    opt.UseSqlServer(Environment.GetEnvironmentVariable("TodoContext")));
+    opt.UseSqlServer(connectionString));
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -16,8 +24,7 @@ builder.Services.AddCors();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment()|| app.Environment.IsProduction())
+if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
@@ -26,7 +33,6 @@ if (app.Environment.IsDevelopment()|| app.Environment.IsProduction())
 app.UseHttpsRedirection();
 
 app.UseCors(options =>
-
     options.WithOrigins("https://delightful-bush-08e8f4500.4.azurestaticapps.net/")
            .AllowAnyMethod()
            .AllowAnyHeader()
