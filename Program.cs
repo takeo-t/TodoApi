@@ -12,7 +12,7 @@ builder.Services.AddControllers();
 var connectionString = Environment.GetEnvironmentVariable("TodoContext");
 if (string.IsNullOrEmpty(connectionString))
 {
-    throw new InvalidOperationException("データベース接続文字列が環境変数に設定されていません。");
+    throw new InvalidOperationException("Database connection string is not set in environment variables.");
 }
 
 builder.Services.AddDbContext<TodoContext>(opt =>
