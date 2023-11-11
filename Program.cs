@@ -3,15 +3,10 @@ using TodoApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
 builder.Services.AddDbContext<TodoContext>(opt =>
     opt.UseSqlServer(builder.Configuration.GetConnectionString("TodoContext")));
-    // opt.UseSqlite("Data Source=todoapi.db"));
-// builder.Services.AddDbContext<TodoContext>(opt =>
-//     opt.UseInMemoryDatabase("TodoList"));
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCors();
@@ -28,7 +23,7 @@ if (app.Environment.IsDevelopment()|| app.Environment.IsProduction())
 app.UseHttpsRedirection();
 
 app.UseCors(options =>
-    // options.WithOrigins("http://localhost:3000")
+
     options.WithOrigins("https://delightful-bush-08e8f4500.4.azurestaticapps.net/")
            .AllowAnyMethod()
            .AllowAnyHeader()
