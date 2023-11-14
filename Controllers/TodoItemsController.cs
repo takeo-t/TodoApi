@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TodoApi.Models;
@@ -60,7 +55,6 @@ namespace TodoApi.Controllers
         }
 
         // PUT: api/TodoItems/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=212375
         [HttpPut("{id}")]
         public async Task<IActionResult> PutTodoItem(long id, TodoItem todoItem)
         {
@@ -78,7 +72,7 @@ namespace TodoApi.Controllers
             }
             catch (DbUpdateConcurrencyException ex)
             {
-                _logger.LogError(ex, "データベースの更新中に競合エラーが発生しました。");
+                _logger.LogError(ex, "A conflict error occurred while updating the database.");
                 if (!TodoItemExists(id))
                 {
                     return NotFound();
@@ -103,6 +97,8 @@ namespace TodoApi.Controllers
 
             todoItem.Status = TodoStatus.Complete;
 
+            todoItem.CompletedAt = DateTime.UtcNow;
+
             _context.Entry(todoItem).State = EntityState.Modified;
             await _context.SaveChangesAsync();
 
@@ -118,7 +114,7 @@ namespace TodoApi.Controllers
                 return NotFound();
             }
 
-            todoItem.Status = TodoStatus.Incomplete; // Status を 0 に設定する
+            todoItem.Status = TodoStatus.Incomplete;
 
             _context.Entry(todoItem).State = EntityState.Modified;
             await _context.SaveChangesAsync();
@@ -130,18 +126,12 @@ namespace TodoApi.Controllers
 
 
         // POST: api/TodoItems
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<TodoItem>> PostTodoItem(TodoItem todoItem)
         {
-        //   if (_context.TodoItems == null)
-        //   {
-        //       return Problem("Entity set 'TodoContext.TodoItems'  is null.");
-        //   }
             _context.TodoItems.Add(todoItem);
             await _context.SaveChangesAsync();
 
-            // return CreatedAtAction("GetTodoItem", new { id = todoItem.Id }, todoItem);
             return CreatedAtAction(nameof(GetTodoItem), new { id = todoItem.Id }, todoItem);
         }
 
