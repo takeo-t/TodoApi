@@ -40,10 +40,12 @@ public class TodoItem
 
 # 5.セットアップ手順
 セットアップするにあたり.NETcore7のインストールを前提とします。
-```ローカルにセットアップ
+```
+//ローカルにセットアップ
 git clone https://github.com/takeo-t/TodoApi/repository.git
 ```
-```ビルド
+```
+//ビルド
 dotnet run --launch-profile https
 ```
 
