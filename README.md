@@ -3,20 +3,20 @@
 # 2.アプリケーションの概要
 本アプリケーションはTodoアプリケーションのバックエンド部分を担当します。  
 主要な機能は下記に示す通りです。また()内に各機能のエンドポイントを示します。  
-## 2-1.取得  
+## 取得(GET)  
 ##### 全TODOを取得する機能([GET]/api/TodoItems)  
 ##### 未完了TODOのみ取得する機能([GET]/api/TodoItems?status=0`)  
 ##### 完了済TODOのみ取得する機能([GET]/api/TodoItems?status=1)  
 
-## 2-2.追加  
+## 追加(POST)  
 ##### TODOを追加する機能([POST]/api/TodoItems)  
 
-## 2-3.変更  
+## 変更(PUT)  
 ##### TODOを変更する機能([PUT]/api/TodoItems/{id})  
 ##### 完了(/api/TodoItems/{id}/markIncomplete)  
 ##### 未完了に戻す(/api/TodoItems/{id}/markComplete)  
 
-## 2-4.削除  
+## 削除(DELETE)  
 ##### TODOを削除する機能([DELETE]api/TodoItems/{id})  
 
 # 3.データモデルについて
