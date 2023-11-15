@@ -59,6 +59,6 @@ Microsoft Azure App Appsにホストしています。
 # 7. 環境変数の設定方法
 ローカル開発環境ではデータベース接続文字列は`appsettings.Development.json`において設定しますが、App ServiceではApp Service>構成>アプリケーション設定に名前と値を設定します。  
 
-# 7. 作者情報
+# 8. 作者情報
 Taiki Takeo  
 E-mail takeo-t@118satellite.com  
