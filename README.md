@@ -10,6 +10,9 @@
 ##### 全TODOを取得する機能([GET]/api/TodoItems)  
 ##### 未完了TODOのみ取得する機能([GET]/api/TodoItems?status=0`)  
 ##### 完了済TODOのみ取得する機能([GET]/api/TodoItems?status=1)  
+未完了・完了の区別はクエリパラメータを用いてフィルタリングしています。  
+クエリパラーメータを使用することでデータベースのテーブル設計を効率的に行うことができます。  
+また、完了、未完了のステータス以外にも緊急や実行中など新たなステータスを設けることも容易に可能です。  
 
 ## 追加(POST)  
 ##### TODOを追加する機能([POST]/api/TodoItems)  
@@ -34,6 +37,7 @@ public class TodoItem
     public string Content { get; set; } = string.Empty; //string 型で、Todoアイテムの内容や詳細を表します。
     public DateTime DateTime { get; set; } //DateTime 型で、Todoアイテムが作成された日時や予定日時など、日時に関連する情報を保持します。
     public TodoStatus Status { get; set; } //TodoStatus 型でTodoアイテムの状態（例：未完了、完了）を示します。
+    ステータスナンバーの意味について、0は未完了、1は完了を示します。
     public DateTime? CompletedAt { get; set; } //DateTime? 型で、Todoアイテムが完了した日時を示します。このプロパティは null 許容型（DateTime?）であるため、値がない場合（つまりアイテムが未完了の場合）は null になります。
 }
 ```
