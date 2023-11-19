@@ -58,7 +58,9 @@ Microsoft Azure App Appsにホストしています。
 `apitodo118satellite.azurewebsites.net`  
 
 また、下記リンクからSwaggerを使用したサーバーとの接続テストを行います。  
+```
 `https://apitodo118satellite.azurewebsites.net/swagger/index.html`  
+```
 
 # 7. 環境変数の設定方法
 ローカル開発環境ではデータベース接続文字列は`appsettings.Development.json`において設定しますが、App ServiceではApp Service>構成>アプリケーション設定に名前と値を設定します。  
