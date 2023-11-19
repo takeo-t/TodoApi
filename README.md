@@ -37,7 +37,7 @@ public class TodoItem
     public string Content { get; set; } = string.Empty; //string 型で、Todoアイテムの内容や詳細を表します。
     public DateTime DateTime { get; set; } //DateTime 型で、Todoアイテムが作成された日時や予定日時など、日時に関連する情報を保持します。
     public TodoStatus Status { get; set; } //TodoStatus 型でTodoアイテムの状態（例：未完了、完了）を示します。
-    ステータスナンバーの意味について、0は未完了、1は完了を示します。
+    //ステータスナンバーの意味について、0は未完了、1は完了を示します。
     public DateTime? CompletedAt { get; set; } //DateTime? 型で、Todoアイテムが完了した日時を示します。このプロパティは null 許容型（DateTime?）であるため、値がない場合（つまりアイテムが未完了の場合）は null になります。
 }
 ```
