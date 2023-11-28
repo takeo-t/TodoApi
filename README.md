@@ -10,8 +10,11 @@
 ## 2-2. 技術選定について  
 本アプリケーションはC#で記述され、フレームワークは.NETcore7を用いています。  
 .NETcore7はクロスプラットフォーム対応という特徴がありWindows、macOS、Linuxで動作するため、様々なOSで開発することができます。  
-本プロジェクトはMacOSで進行するため.NETcore7を採用しました。
+また、高いパフォーマンスを発揮できるため、レスポンス時間が期待できます。  
+さらにAzureのサービス（例えばAzure App Serviceなど）に容易にデプロイすることができます。  
+これらのメリットを享受するため.NETcore7を採用しました。
 
+## 2-3. 各機能のエンドポイントについて  
 ## 取得(GET)  
 ##### 全TODOを取得する機能([GET]/api/TodoItems)  
 ##### 未完了TODOのみ取得する機能([GET]/api/TodoItems?status=0`)  
@@ -61,12 +64,16 @@ dotnet run --launch-profile https //ビルド
 ```
 # 6. アプリケーションのホスト先
 Microsoft Azure App Appsにホストしています。  
-`apitodo118satellite.azurewebsites.net`  
+`https://apitodo118satellite.azurewebsites.net`  
 
 また、下記リンクからSwaggerを使用したサーバーとの接続テストを行います。  
 ```
 `https://apitodo118satellite.azurewebsites.net/swagger/index.html`  
 ```
+![Swagger](images/swagger.png)  
+
+![Swaggerにて全取得(GET)のテスト](images/swagger_get.png)  
+取得（GET）のテスト  
 
 # 7. 環境変数の設定方法
 ローカル開発環境ではデータベース接続文字列は`appsettings.Development.json`において設定しますが、App ServiceではApp Service>構成>アプリケーション設定に名前と値を設定します。  
