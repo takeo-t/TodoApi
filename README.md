@@ -51,7 +51,8 @@ public class TodoItem
 }
 ```
 時刻は協定世界時（UTC）で記録されるため、日本標準時で表示する場合はフロント側のアプリケーションで対応する必要があります。
-```js/日本標準時で表示する場合の記述例
+```
+//js/日本標準時で表示する場合の記述例
 const formattedDate = moment(rawDate).format('YYYY年MM月DD日HH時mm分');
 ```
 
