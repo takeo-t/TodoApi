@@ -50,6 +50,10 @@ public class TodoItem
     public DateTime? CompletedAt { get; set; } //DateTime? 型で、Todoアイテムが完了した日時を示します。このプロパティは null 許容型（DateTime?）であるため、値がない場合（つまりアイテムが未完了の場合）は null になります。
 }
 ```
+時刻は協定世界時（UTC）で記録されるため、日本標準時で表示する場合はフロント側のアプリケーションで対応する必要があります。
+```js/日本標準時で表示する場合の記述例
+const formattedDate = moment(rawDate).format('YYYY年MM月DD日HH時mm分');
+```
 
 # 4.依存関係について
 本プロジェクトの依存関係は`obj/project.assets.json`を参照してください。  
