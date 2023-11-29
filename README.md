@@ -71,7 +71,7 @@ dotnet run --launch-profile https //ビルド
 ```
 # 6. アプリケーションのホスト先
 Microsoft Azure App Appsにホストしています。  
-[リンクはこちら](https://apitodo118satellite.azurewebsites.net "TodoApp")  
+[リンクはこちら](https://apitodo118satellite.azurewebsites.net "TodoApi")  
 ※本アプリケーションはAPIに特化しているため、アクセスすると「この apitodo118satellite.azurewebsites.net ページが見つかりません」とブラウザに表示されます。
 
 また、下記リンクからSwaggerを使用したサーバーとの接続テストを行います。  
